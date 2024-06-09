@@ -14,7 +14,7 @@ struct MessageInput: View {
     
     var body: some View {
         HStack {
-            TextField("Message", text: $currentTyping)
+            TextField("Start typing...", text: $currentTyping)
             Button("Send") {
                 messageArray.append(Message(content: currentTyping.trimmingCharacters(in: .whitespacesAndNewlines), sender:"self"))
                 currentTyping = ""

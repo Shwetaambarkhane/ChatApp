@@ -15,6 +15,7 @@
 		AAA8A9042C13845900574C70 /* ReceivedMessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8A9032C13845900574C70 /* ReceivedMessageBubble.swift */; };
 		AAA8A9072C1384B400574C70 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8A9062C1384B400574C70 /* Message.swift */; };
 		AAA8A90A2C1385B000574C70 /* MessageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8A9092C1385B000574C70 /* MessageInput.swift */; };
+		AAA8A90D2C15C11C00574C70 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8A90C2C15C11C00574C70 /* LoginPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		AAA8A9032C13845900574C70 /* ReceivedMessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedMessageBubble.swift; sourceTree = "<group>"; };
 		AAA8A9062C1384B400574C70 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		AAA8A9092C1385B000574C70 /* MessageInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInput.swift; sourceTree = "<group>"; };
+		AAA8A90C2C15C11C00574C70 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,11 +98,20 @@
 		AAA8A9082C13854400574C70 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AAA8A90B2C15C10A00574C70 /* Login */,
 				AAA8A8F42C13824800574C70 /* ContentView.swift */,
 				AAA8A9092C1385B000574C70 /* MessageInput.swift */,
 				AAA8A9002C1383AE00574C70 /* MessageBubble */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		AAA8A90B2C15C10A00574C70 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				AAA8A90C2C15C11C00574C70 /* LoginPage.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +188,7 @@
 				AAA8A8F52C13824800574C70 /* ContentView.swift in Sources */,
 				AAA8A9072C1384B400574C70 /* Message.swift in Sources */,
 				AAA8A9042C13845900574C70 /* ReceivedMessageBubble.swift in Sources */,
+				AAA8A90D2C15C11C00574C70 /* LoginPage.swift in Sources */,
 				AAA8A90A2C1385B000574C70 /* MessageInput.swift in Sources */,
 				AAA8A8F32C13824800574C70 /* ChatAppApp.swift in Sources */,
 			);
