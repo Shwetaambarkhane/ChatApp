@@ -9,6 +9,8 @@ import SwiftUI
 
 struct LoginView: View {
     
+    @EnvironmentObject var viewModel: AuthenticationViewModel
+    
     @State private var username = ""
     @State private var password = ""
     
@@ -28,14 +30,22 @@ struct LoginView: View {
                 .multilineTextAlignment(.center)
                 .padding()
             
-            Button("Click to continue") {
-                
-            }
-            .padding()
-            .foregroundColor(Color(.black))
-            .background(
-                RoundedRectangle(cornerRadius: 50, style: .continuous).fill(Color(UIColor(red: 0, green: 230/255, blue: 210/255, alpha: 1)))
-            )
+//            Button("Click to continue") {
+//
+//            }
+//            .padding()
+//            .foregroundColor(Color(.black))
+//            .background(
+//                RoundedRectangle(cornerRadius: 50, style: .continuous).fill(Color(UIColor(red: 0, green: 230/255, blue: 210/255, alpha: 1)))
+//            )
+            Spacer()
+            
+            // 3
+            GoogleSignInButton()
+                .padding()
+                .onTapGesture {
+                    viewModel.signIn()
+                }
         }
     }
     
