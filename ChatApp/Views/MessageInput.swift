@@ -9,13 +9,8 @@ import SwiftUI
 
 struct MessageInput: View {
     
-    @State private var currentTyping = ""
-    @State private var messageArray: [Message]
-    
-    init(currentTyping: String, messageArray: [Message]) {
-        self.currentTyping = currentTyping
-        self.messageArray = messageArray
-    }
+    @State var currentTyping = ""
+    @Binding var messageArray: [Message]
     
     var body: some View {
         HStack {

@@ -33,7 +33,7 @@ struct ContentView: View {
                     }
                 }
                 
-                MessageInput(currentTyping: currentTyping, messageArray: messageArray)
+                MessageInput(currentTyping: currentTyping, messageArray: $messageArray)
                 
             }
             .navigationTitle("Group Chat")
