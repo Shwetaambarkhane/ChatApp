@@ -21,7 +21,7 @@ struct ReceivedMessageBubble: View {
                 Text(message)
                     .padding(8)
                     .padding(.horizontal, 5)
-                    .background(Color(.systemGray5)) // FIXME: macOS incompatible
+                    .background(Color(.systemGray5))
                     .cornerRadius(10)
             }
             Spacer()
