@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject var messageManager = MessagesManager()
+    
     @State private var currentTyping = ""
     @State private var messageArray: [Message] = [
         Message(content: "Temporary message", sender: "Alex"),
@@ -21,7 +23,7 @@ struct HomeView: View {
                 ScrollViewReader { proxy in
                     ScrollView {
                         LazyVStack {
-                            ForEach(messageArray) { message in
+                            ForEach(messageManager.messages, id: \.id) { message in
                                 if message.sender == "self" {
                                     SentMessageBubble(message: message.content)
                                 } else {
