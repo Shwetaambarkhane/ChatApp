@@ -38,4 +38,14 @@ class MessagesManager: ObservableObject {
             self.messages.sort { $0.timestamp < $1.timestamp }
         }
     }
+    
+    func sendMessage(text: String, sender: String) {
+        do {
+            let newMessage = Message(content: text, sender: sender)
+            
+            try db.collection("messages").document().setData(from: newMessage)
+        } catch {
+            print("Error adding messages to firestore: ", error.localizedDescription)
+        }
+    }
 }

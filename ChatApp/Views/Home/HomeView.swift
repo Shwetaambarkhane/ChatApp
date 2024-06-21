@@ -36,6 +36,7 @@ struct HomeView: View {
                 }
                 
                 MessageInput(currentTyping: currentTyping, messageArray: $messageArray)
+                    .environmentObject(messageManager)
                 
             }
             .navigationTitle("Group Chat")
