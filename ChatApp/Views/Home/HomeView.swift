@@ -8,12 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject var messageManager = MessagesManager()
+    
     @State private var currentTyping = ""
-    @State private var messageArray: [Message] = [
-        Message(content: "Temporary message", sender: "Alex"),
-        Message(content: "Self message", sender: "self"),
-        Message(content: "Other person message", sender: "Hailey")
-    ]
     
     var body: some View {
         NavigationView {
@@ -21,7 +18,7 @@ struct HomeView: View {
                 ScrollViewReader { proxy in
                     ScrollView {
                         LazyVStack {
-                            ForEach(messageArray) { message in
+                            ForEach(messageManager.messages, id: \.id) { message in
                                 if message.sender == "self" {
                                     SentMessageBubble(message: message.content)
                                 } else {
@@ -33,7 +30,8 @@ struct HomeView: View {
                     }
                 }
                 
-                MessageInput(currentTyping: currentTyping, messageArray: $messageArray)
+                MessageInput(currentTyping: currentTyping)
+                    .environmentObject(messageManager)
                 
             }
             .navigationTitle("Group Chat")

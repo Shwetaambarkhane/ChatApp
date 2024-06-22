@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Message: Identifiable, Equatable {
-    let id = UUID()
-    let content: String
-    let sender: String
+struct Message: Identifiable, Equatable, Codable {
+    var id: String = UUID().uuidString
+    var content: String
+    var sender: String
+    var timestamp: Date = Date()
 }
