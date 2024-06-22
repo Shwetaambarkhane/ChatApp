@@ -11,11 +11,6 @@ struct HomeView: View {
     @StateObject var messageManager = MessagesManager()
     
     @State private var currentTyping = ""
-    @State private var messageArray: [Message] = [
-        Message(content: "Temporary message", sender: "Alex"),
-        Message(content: "Self message", sender: "self"),
-        Message(content: "Other person message", sender: "Hailey")
-    ]
     
     var body: some View {
         NavigationView {
@@ -35,7 +30,7 @@ struct HomeView: View {
                     }
                 }
                 
-                MessageInput(currentTyping: currentTyping, messageArray: $messageArray)
+                MessageInput(currentTyping: currentTyping)
                     .environmentObject(messageManager)
                 
             }

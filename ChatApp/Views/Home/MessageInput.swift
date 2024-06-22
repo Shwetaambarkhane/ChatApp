@@ -11,13 +11,11 @@ struct MessageInput: View {
     
     @EnvironmentObject var messageManager: MessagesManager
     @State var currentTyping = ""
-    @Binding var messageArray: [Message]
     
     var body: some View {
         HStack {
             TextField("Start typing...", text: $currentTyping)
             Button("Send") {
-                messageArray.append(Message(content: currentTyping.trimmingCharacters(in: .whitespacesAndNewlines), sender:"self"))
                 messageManager.sendMessage(text: currentTyping, sender: "self")
                 currentTyping = ""
             }
