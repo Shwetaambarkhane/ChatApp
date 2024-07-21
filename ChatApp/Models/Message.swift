@@ -10,6 +10,6 @@ import Foundation
 struct Message: Identifiable, Equatable, Codable {
     var id: String = UUID().uuidString
     var content: String
-    var sender: String
+    var senderId: String
     var timestamp: Date = Date()
 }

@@ -19,10 +19,10 @@ struct HomeView: View {
                     ScrollView {
                         LazyVStack {
                             ForEach(messageManager.messages, id: \.id) { message in
-                                if message.sender == "self" {
+                                if message.senderId == "self" {
                                     SentMessageBubble(message: message.content)
                                 } else {
-                                    ReceivedMessageBubble(message: message.content, sender: message.sender)
+                                    ReceivedMessageBubble(message: message.content, sender: message.senderId)
                                 }
                             }
                         }

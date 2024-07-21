@@ -41,7 +41,7 @@ class MessagesManager: ObservableObject {
     
     func sendMessage(text: String, sender: String) {
         do {
-            let newMessage = Message(content: text, sender: sender)
+            let newMessage = Message(content: text, senderId: sender)
             
             try db.collection("messages").document().setData(from: newMessage)
         } catch {
