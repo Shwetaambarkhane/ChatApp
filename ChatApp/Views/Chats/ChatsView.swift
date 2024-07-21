@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ChatsView: View {
     @StateObject private var viewModel = ChatsViewModel()
+    @StateObject private var userViewModel = UserViewModel()
     
     var body: some View {
         NavigationView {
@@ -16,7 +17,7 @@ struct ChatsView: View {
                 NavigationLink(destination: ChatDetailView(chat: chat)) {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text(chat.recipientId)
+                            Text(userViewModel.getUser(by: chat.recipientId)?.username ?? "")
                                 .font(.headline)
                             Text(chat.lastMessage)
                                 .font(.subheadline)
