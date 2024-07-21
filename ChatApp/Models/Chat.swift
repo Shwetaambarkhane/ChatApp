@@ -10,7 +10,7 @@ import FirebaseFirestoreSwift
 
 struct Chat: Identifiable, Codable {
     @DocumentID var id: String? = UUID().uuidString
-    var participants: [String]
+    var recipientId: String
     var lastMessage: String
     var lastMessageTimestamp: Date
     //var messages: [Message]

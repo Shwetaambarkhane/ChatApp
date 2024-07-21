@@ -16,7 +16,7 @@ struct ChatsView: View {
                 NavigationLink(destination: ChatDetailView(chat: chat)) {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text(chat.participants.joined(separator: ", "))
+                            Text(chat.recipientId)
                                 .font(.headline)
                             Text(chat.lastMessage)
                                 .font(.subheadline)
@@ -41,7 +41,7 @@ struct ChatDetailView: View {
     var chat: Chat
     
     var body: some View {
-        Text("Chat with \(chat.participants.joined(separator: ", "))")
+        Text("Chat with \(chat.recipientId)")
             .navigationTitle("Chat")
     }
 }
