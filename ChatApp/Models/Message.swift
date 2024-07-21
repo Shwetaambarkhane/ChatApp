@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
 struct Message: Identifiable, Equatable, Codable {
-    var id: String = UUID().uuidString
+    @DocumentID var id: String? = UUID().uuidString
     var content: String
     var senderId: String
     var timestamp: Date = Date()
