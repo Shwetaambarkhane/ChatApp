@@ -10,12 +10,7 @@ import GoogleSignIn
 
 class AuthenticationViewModel: ObservableObject {
     
-    enum SignInState {
-        case signedIn
-        case signedOut
-    }
-    
-    @Published var state: SignInState = .signedOut
+    @Published var state: Bool = UserDefaults.standard.bool(forKey: "SignedIn")
     
     func signIn() {
         // 1
@@ -55,11 +50,11 @@ class AuthenticationViewModel: ObservableObject {
         let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
         
         // 3
-        Auth.auth().signIn(with: credential) { [unowned self] (_, error) in
+        Auth.auth().signIn(with: credential) { (_, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                self.state = .signedIn
+                UserDefaults.standard.set(true, forKey: "SignedIn")
             }
         }
     }
@@ -72,7 +67,7 @@ class AuthenticationViewModel: ObservableObject {
             // 2
             try Auth.auth().signOut()
             
-            state = .signedOut
+            UserDefaults.standard.set(false, forKey: "SignedIn")
         } catch {
             print(error.localizedDescription)
         }
