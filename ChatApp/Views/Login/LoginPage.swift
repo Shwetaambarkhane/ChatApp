@@ -13,39 +13,37 @@ struct LoginView: View {
     
     @State private var username = ""
     @State private var password = ""
+    @State var isSignedIn: Bool = false
     
     var body: some View {
-        VStack {
-            Image("login_image")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-            
-            Text("Welcome to ChatApp")
-                .fontWeight(.black)
-                .font(.largeTitle)
-                .multilineTextAlignment(.center)
-            
-            Text("Connect with people")
-                .fontWeight(.light)
-                .multilineTextAlignment(.center)
-                .padding()
-            
-//            Button("Click to continue") {
-//
-//            }
-//            .padding()
-//            .foregroundColor(Color(.black))
-//            .background(
-//                RoundedRectangle(cornerRadius: 50, style: .continuous).fill(Color(UIColor(red: 0, green: 230/255, blue: 210/255, alpha: 1)))
-//            )
-            Spacer()
-            
-            // 3
-            GoogleSignInButton()
-                .padding()
-                .onTapGesture {
-                    viewModel.signIn()
-                }
+        if isSignedIn {
+            ChatsView()
+                .environmentObject(viewModel)
+        } else {
+            VStack {
+                Image("login_image")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                
+                Text("Welcome to ChatApp")
+                    .fontWeight(.black)
+                    .font(.largeTitle)
+                    .multilineTextAlignment(.center)
+                
+                Text("Connect with people")
+                    .fontWeight(.light)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                Spacer()
+                
+                // 3
+                GoogleSignInButton()
+                    .padding()
+                    .onTapGesture {
+                        self.isSignedIn = true
+                        viewModel.signIn()
+                    }
+            }
         }
     }
     
