@@ -14,10 +14,10 @@ struct ChatsView: View {
     var body: some View {
         NavigationView {
             List(viewModel.chats) { chat in
-                NavigationLink(destination: ChatDetailView(chat: chat)) {
+                NavigationLink(destination: HomeView(user: userViewModel.user ?? User(email: "", username: ""))) {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text(userViewModel.getUser(by: chat.recipientId)?.username ?? "")
+                            Text(userViewModel.user?.username ?? "")
                                 .font(.headline)
                             Text(chat.lastMessage)
                                 .font(.subheadline)
@@ -28,6 +28,9 @@ struct ChatsView: View {
                             .font(.footnote)
                             .foregroundColor(.gray)
                     }
+                }
+                .onAppear {
+                    userViewModel.fetchUser(by: chat.recipientId)
                 }
             }
             .navigationTitle("Chats")

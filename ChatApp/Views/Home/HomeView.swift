@@ -11,30 +11,32 @@ struct HomeView: View {
     @StateObject var messageManager = MessagesManager()
     
     @State private var currentTyping = ""
+    var user: User
     
     var body: some View {
-        NavigationView {
-            VStack {
-                ScrollViewReader { proxy in
-                    ScrollView {
-                        LazyVStack {
-                            ForEach(messageManager.messages, id: \.id) { message in
-                                if message.senderId == "self" {
-                                    SentMessageBubble(message: message.content)
-                                } else {
-                                    ReceivedMessageBubble(message: message.content, sender: message.senderId)
-                                }
+        VStack {
+            ScrollViewReader { proxy in
+                ScrollView {
+                    LazyVStack {
+                        ForEach(messageManager.messages, id: \.id) { message in
+                            if message.senderId == "self" {
+                                SentMessageBubble(message: message.content)
+                            } else {
+                                ReceivedMessageBubble(message: message.content, sender: user.username)
                             }
                         }
-                        .padding()
                     }
+                    .padding()
                 }
-                
-                MessageInput(currentTyping: currentTyping)
-                    .environmentObject(messageManager)
-                
             }
-            .navigationTitle("Group Chat")
+            
+            MessageInput(currentTyping: currentTyping)
+                .environmentObject(messageManager)
+            
         }
+        .onAppear {
+            messageManager.fetchMessages(recipientId: user.id!)
+        }
+        .navigationTitle(user.username)
     }
 }

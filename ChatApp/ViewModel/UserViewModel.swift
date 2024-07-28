@@ -20,9 +20,4 @@ class UserViewModel: ObservableObject {
             }
         }
     }
-    
-    func getUser(by userId: String) -> User? {
-        fetchUser(by: userId)
-        return user
-    }
 }
