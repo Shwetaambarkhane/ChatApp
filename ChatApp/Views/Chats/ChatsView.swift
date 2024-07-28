@@ -41,15 +41,6 @@ struct ChatsView: View {
     }
 }
 
-struct ChatDetailView: View {
-    var chat: Chat
-    
-    var body: some View {
-        Text("Chat with \(chat.recipientId)")
-            .navigationTitle("Chat")
-    }
-}
-
 struct ChatsView_Previews: PreviewProvider {
     static var previews: some View {
         ChatsView()

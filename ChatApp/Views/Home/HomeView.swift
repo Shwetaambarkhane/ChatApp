@@ -36,7 +36,7 @@ struct HomeView: View {
             
         }
         .onAppear {
-            messageManager.fetchMessages(recipientId: user.id!)
+            messageManager.fetchMessages(recipientId: user.id)
         }
         .navigationTitle(user.username)
     }

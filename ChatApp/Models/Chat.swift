@@ -13,5 +13,4 @@ struct Chat: Identifiable, Codable {
     var recipientId: String
     var lastMessage: String
     var lastMessageTimestamp: Date
-    //var messages: [Message]
 }
