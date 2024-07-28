@@ -11,6 +11,7 @@ import GoogleSignIn
 class AuthenticationViewModel: ObservableObject {
     
     @Published var state: Bool = UserDefaults.standard.bool(forKey: "SignedIn")
+    var currentUser: User?
     
     func signIn() {
         // 1
@@ -33,6 +34,9 @@ class AuthenticationViewModel: ObservableObject {
             // 5
             GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController) { [weak self] authentication, error in
                 self?.authenticateUser(for: authentication?.user, with: error)
+                if let user = authentication?.user, let profile = user.profile, let userId = user.userID {
+                    self?.currentUser = User(id: userId, email: profile.email, username: profile.name)
+                }
             }
         }
     }
@@ -66,6 +70,7 @@ class AuthenticationViewModel: ObservableObject {
         do {
             // 2
             try Auth.auth().signOut()
+            self.currentUser = nil
             
             UserDefaults.standard.set(false, forKey: "SignedIn")
         } catch {
