@@ -40,11 +40,11 @@ class MessagesManager: ObservableObject {
         }
     }
     
-    func sendMessage(text: String, sender: String) {
+    func sendMessage(content: String, senderId: String, chatId: String) {
+        let message = Message(id:UUID().uuidString, content: content, senderId: senderId, timestamp: Date())
         do {
-            let newMessage = Message(content: text, senderId: sender)
-            
-            try db.collection("messages").document().setData(from: newMessage)
+            self.messages.append(message)
+            _ = try db.collection("chats").document(chatId).collection("messages").addDocument(from: message)
         } catch {
             print("Error adding messages to firestore: ", error.localizedDescription)
         }
@@ -64,6 +64,7 @@ class MessagesManager: ObservableObject {
                         .order(by: "timestamp", descending: false)
                         .getDocuments { (messageSnapshot, error) in
                             if let error = error {
+                                print("Error fetching messages from firestore: ", error.localizedDescription)
                                 return
                             }
                             if let messageDocuments = messageSnapshot?.documents {

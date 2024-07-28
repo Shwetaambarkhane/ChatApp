@@ -14,7 +14,7 @@ struct ChatsView: View {
     var body: some View {
         NavigationView {
             List(viewModel.chats) { chat in
-                NavigationLink(destination: HomeView(user: userViewModel.user ?? User(email: "", username: ""))) {
+                NavigationLink(destination: HomeView(user: userViewModel.user ?? User(email: "", username: ""), chatId: chat.id)) {
                     HStack {
                         VStack(alignment: .leading) {
                             Text(userViewModel.user?.username ?? "")

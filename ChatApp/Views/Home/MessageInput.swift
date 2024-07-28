@@ -10,13 +10,18 @@ import SwiftUI
 struct MessageInput: View {
     
     @EnvironmentObject var messageManager: MessagesManager
+    @State var chatId: String?
     @State var currentTyping = ""
     
     var body: some View {
         HStack {
             TextField("Start typing...", text: $currentTyping)
             Button("Send") {
-                messageManager.sendMessage(text: currentTyping, sender: "self")
+                if let chatId = chatId {
+                    messageManager.sendMessage(content: currentTyping, senderId: "self", chatId: chatId)
+                } else {
+                    print("recipientId is nil")
+                }
                 currentTyping = ""
             }
             .padding(.leading, 5)

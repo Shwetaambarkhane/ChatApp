@@ -12,6 +12,7 @@ struct HomeView: View {
     
     @State private var currentTyping = ""
     var user: User
+    var chatId: String?
     
     var body: some View {
         VStack {
@@ -30,7 +31,7 @@ struct HomeView: View {
                 }
             }
             
-            MessageInput(currentTyping: currentTyping)
+            MessageInput(chatId: chatId, currentTyping: currentTyping)
                 .environmentObject(messageManager)
             
         }
