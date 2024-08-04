@@ -59,6 +59,7 @@ class AuthenticationViewModel: ObservableObject {
                 print(error.localizedDescription)
             } else {
                 UserDefaults.standard.set(true, forKey: "SignedIn")
+                self.state = true
             }
         }
     }
@@ -73,6 +74,7 @@ class AuthenticationViewModel: ObservableObject {
             self.currentUser = nil
             
             UserDefaults.standard.set(false, forKey: "SignedIn")
+            self.state = false
         } catch {
             print(error.localizedDescription)
         }

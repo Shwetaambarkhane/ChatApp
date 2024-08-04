@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ChatsView: View {
+    @EnvironmentObject var authViewModel: AuthenticationViewModel
+    
     @StateObject private var viewModel = ChatsViewModel()
     @StateObject private var userViewModel = UserViewModel()
     
@@ -34,6 +36,13 @@ struct ChatsView: View {
                 }
             }
             .navigationTitle("Chats")
+            .toolbar(content: {
+                Button(action: {
+                    authViewModel.signOut()
+                }) {
+                    Text("Sign Out")
+                }
+            })
             .onAppear {
                 viewModel.fetchChats()
             }

@@ -13,10 +13,9 @@ struct LoginView: View {
     
     @State private var username = ""
     @State private var password = ""
-    @State var isSignedIn: Bool = false
     
     var body: some View {
-        if isSignedIn {
+        if viewModel.state {
             ChatsView()
                 .environmentObject(viewModel)
         } else {
@@ -40,7 +39,6 @@ struct LoginView: View {
                 GoogleSignInButton()
                     .padding()
                     .onTapGesture {
-                        self.isSignedIn = true
                         viewModel.signIn()
                     }
             }
